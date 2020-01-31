@@ -10,7 +10,7 @@
   tags:
   - provision_hosts
 
-- hosts: cluster
+- hosts: devstack
   gather_facts: false
   vars_files:
     - "global_vars.yml"
@@ -19,41 +19,14 @@
   tags:
   - prepare_cluster_hosts
 
-- hosts: master
-  vars_files:
-    - "global_vars.yml"
-  roles:
-    - master
-    - common
-  tags:
-  - setup_master_host
-
-- hosts: workers
-  vars_files:
-    - "global_vars.yml"
-  roles:
-    - workers
-    - common
-  tags:
-  - setup_worker_hosts
-
 - hosts: devstack
   roles:
     - devstack
   tags:
   - install_manila
 
-- hosts: cluster
+- hosts: devstack
   roles:
     - devstack_common
   tags:
   - openstack_clients
-
-- hosts: master
-  vars_files:
-    - "global_vars.yml"
-  roles:
-    - gantsign.golang
-    - csi
-  tags:
-  - setup_csi

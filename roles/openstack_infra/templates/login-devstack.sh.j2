@@ -4,5 +4,5 @@ ssh -q -o UserKnownHostsFile=/dev/null \
   -o StrictHostKeyChecking=no \
   -X \
   -i {{ private_key_file }} \
-  centos@{{ worker1.server.public_v4 }} \
+  centos@{{ devstack.server.public_v4 }} \
   $*
